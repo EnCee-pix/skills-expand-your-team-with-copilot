@@ -727,11 +727,6 @@ body.dark-mode .activity-tag {
   color: #8e99f3 !important;
 }
 
-body.dark-mode .activity-tag[style*="sports"] {
-  background: #1b3d1c !important;
-  color: #66bb6a !important;
-}
-
 /* Dark mode adjustments for skeleton loading */
 body.dark-mode .skeleton-line {
   background: linear-gradient(
