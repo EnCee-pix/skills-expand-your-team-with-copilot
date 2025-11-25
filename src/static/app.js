@@ -519,17 +519,17 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Create share buttons HTML
+    // Create share buttons HTML (data passed via click handlers, not data attributes)
     const shareButtonsHtml = `
       <div class="share-buttons">
         <span class="share-label">Share:</span>
-        <button class="share-btn share-facebook" data-activity="${name}" data-description="${details.description}" title="Share on Facebook">
+        <button class="share-btn share-facebook" title="Share on Facebook">
           <span class="share-icon">f</span>
         </button>
-        <button class="share-btn share-twitter" data-activity="${name}" data-description="${details.description}" title="Share on X (Twitter)">
+        <button class="share-btn share-twitter" title="Share on X (Twitter)">
           <span class="share-icon">𝕏</span>
         </button>
-        <button class="share-btn share-email" data-activity="${name}" data-description="${details.description}" data-schedule="${formattedSchedule}" title="Share via Email">
+        <button class="share-btn share-email" title="Share via Email">
           <span class="share-icon">✉</span>
         </button>
       </div>
@@ -616,20 +616,25 @@ document.addEventListener("DOMContentLoaded", () => {
     activitiesList.appendChild(activityCard);
   }
 
+  // Generate share message for social platforms
+  function getShareMessage(activityName, description) {
+    return `Check out the ${activityName} at Mergington High School! ${description}`;
+  }
+
   // Share on Facebook
   function shareOnFacebook(activityName, description) {
-    const text = `Check out the ${activityName} at Mergington High School! ${description}`;
+    const text = getShareMessage(activityName, description);
     const url = window.location.href;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
-    window.open(facebookUrl, '_blank', 'width=600,height=400');
+    window.open(facebookUrl, '_blank', 'width=600,height=400,noopener');
   }
 
   // Share on Twitter (X)
   function shareOnTwitter(activityName, description) {
-    const text = `Check out the ${activityName} at Mergington High School! ${description}`;
+    const text = getShareMessage(activityName, description);
     const url = window.location.href;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-    window.open(twitterUrl, '_blank', 'width=600,height=400');
+    window.open(twitterUrl, '_blank', 'width=600,height=400,noopener');
   }
 
   // Share via Email
